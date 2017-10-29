@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62EC824E-4311-4F51-A41D-53840E89D617}</ProjectGuid>
+    <ProjectGuid>{11C07369-C689-43D7-BC24-224852DE22B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cibertec.Repositories</RootNamespace>
-    <AssemblyName>Cibertec.Repositories</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>Cibertec.UnitOfWork</RootNamespace>
+    <AssemblyName>Cibertec.UnitOfWork</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,14 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepository.cs" />
-    <Compile Include="Northwind\ICustomerRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cibertec.Models\Cibertec.Models.csproj">
-      <Project>{6c858272-4d05-467d-bfea-e745b7538a5c}</Project>
-      <Name>Cibertec.Models</Name>
+    <ProjectReference Include="..\Cibertec.Repositories\Cibertec.Repositories.csproj">
+      <Project>{62ec824e-4311-4f51-a41d-53840e89d617}</Project>
+      <Name>Cibertec.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
