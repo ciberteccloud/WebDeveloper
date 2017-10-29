@@ -27,19 +27,31 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Cibertec.Html", "Cibertec.H
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{7D72A46F-E1A9-4F00-B1C3-9FC6528AB61B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cibertec.Models", "Cibertec.Models\Cibertec.Models.csproj", "{6C858272-4D05-467D-BFEA-E745B7538A5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{08A70A0B-9B5D-4AAD-8763-566B602BC04C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08A70A0B-9B5D-4AAD-8763-566B602BC04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A70A0B-9B5D-4AAD-8763-566B602BC04C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A70A0B-9B5D-4AAD-8763-566B602BC04C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{6C858272-4D05-467D-BFEA-E745B7538A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C858272-4D05-467D-BFEA-E745B7538A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C858272-4D05-467D-BFEA-E745B7538A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C858272-4D05-467D-BFEA-E745B7538A5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{08A70A0B-9B5D-4AAD-8763-566B602BC04C} = {CC1C6C17-59D5-423E-807D-1D9194F1139D}
+		{6C858272-4D05-467D-BFEA-E745B7538A5C} = {7D72A46F-E1A9-4F00-B1C3-9FC6528AB61B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD14B071-693B-461F-9383-DB88B46C138E}
