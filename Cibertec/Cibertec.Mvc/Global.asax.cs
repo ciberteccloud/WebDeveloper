@@ -12,6 +12,7 @@ namespace Cibertec.Mvc
     {
         protected void Application_Start()
         {
+            DIConfig.ConfigureInjector();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

@@ -1,6 +1,4 @@
-﻿using Cibertec.Repositories.Dapper.Northwind;
-using Cibertec.UnitOfWork;
-using System.Configuration;
+﻿using Cibertec.UnitOfWork;
 using System.Web.Mvc;
 
 namespace Cibertec.Mvc.Controllers
@@ -8,9 +6,9 @@ namespace Cibertec.Mvc.Controllers
     public class CustomerController : Controller
     {
         private readonly IUnitOfWork _unit;
-        public CustomerController()
+        public CustomerController(IUnitOfWork unit)
         {
-            _unit = new NorthwindUnitOfWork(ConfigurationManager.ConnectionStrings["NorthwindConnection"].ToString());
+            _unit = unit;
         }
         public ActionResult Index()
         {
