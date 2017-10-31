@@ -1,18 +1,25 @@
 ﻿using Cibertec.Models;
 using Cibertec.UnitOfWork;
 using System.Web.Mvc;
+using log4net;
+using Cibertec.Mvc.ActionFilters;
 
 namespace Cibertec.Mvc.Controllers
 {
-    public class CustomerController : Controller
+    [ErrorActionFilter]
+    public class CustomerController : BaseController
     {
-        private readonly IUnitOfWork _unit;
-        public CustomerController(IUnitOfWork unit)
-        {
-            _unit = unit;
+        public CustomerController(ILog log, IUnitOfWork unit) : base(log, unit)
+        {            
         }
+        public ActionResult Error()
+        {
+            throw new System.Exception("Test error to validate Action Filter");
+        }
+
         public ActionResult Index()
         {
+            _log.Info("Execution of Customer Controller OK");
             return View(_unit.Customers.GetList());
         }
 
