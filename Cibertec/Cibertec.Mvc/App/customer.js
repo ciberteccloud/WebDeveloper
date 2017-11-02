@@ -4,7 +4,7 @@
     return customer;
 
     function successReload() {
-        cibertec.closeModal();        
+        cibertec.closeModal();
     }
 
 })(window.customer = window.customer || {});

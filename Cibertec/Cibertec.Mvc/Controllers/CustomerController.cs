@@ -11,7 +11,7 @@ namespace Cibertec.Mvc.Controllers
     public class CustomerController : BaseController
     {
         public CustomerController(ILog log, IUnitOfWork unit) : base(log, unit)
-        {            
+        {
         }
         public ActionResult Error()
         {
@@ -24,7 +24,7 @@ namespace Cibertec.Mvc.Controllers
             return View(_unit.Customers.GetList());
         }
 
-        public ActionResult Create()
+        public PartialViewResult Create()
         {
             return PartialView("_Create", new Customer());
         }
@@ -32,14 +32,14 @@ namespace Cibertec.Mvc.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
-            if (!ModelState.IsValid) return PartialView("_Create", new Customer());            
+            if (!ModelState.IsValid) return PartialView("_Create", customer);
             _unit.Customers.Insert(customer);
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            return Json(new { success = true });
         }
 
         public ActionResult Edit(int id)
         {
-            return PartialView("_Edit",_unit.Customers.GetById(id));
+            return PartialView("_Edit", _unit.Customers.GetById(id));
         }
 
         [HttpPost]
@@ -55,14 +55,14 @@ namespace Cibertec.Mvc.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(_unit.Customers.GetById(id));
+            return PartialView("_Delete", _unit.Customers.GetById(id));
         }
 
         [HttpPost]
         public ActionResult Delete(Customer customer)
         {
             if (_unit.Customers.Delete(customer)) return RedirectToAction("Index");
-            return View(customer);
+            return PartialView("_Delete", customer);
         }
     }
 }
