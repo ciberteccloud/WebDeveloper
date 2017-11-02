@@ -4,10 +4,12 @@ using System.Web.Mvc;
 using log4net;
 using Cibertec.Mvc.ActionFilters;
 using System.Net;
+using System.Collections.Generic;
 
 namespace Cibertec.Mvc.Controllers
 {
     [ErrorActionFilter]
+    [RoutePrefix("Customer")]
     public class CustomerController : BaseController
     {
         public CustomerController(ILog log, IUnitOfWork unit) : base(log, unit)
@@ -60,6 +62,23 @@ namespace Cibertec.Mvc.Controllers
         {
             if (_unit.Customers.Delete(customer)) return RedirectToAction("Index");
             return PartialView("_Delete", customer);
+        }
+
+        [Route("List/{page:int}/{rows:int}")]
+        public PartialViewResult List(int page, int rows)
+        {
+            if (page <= 0 || rows <= 0) return PartialView(new List<Customer>());
+            var startRecord = ((page - 1) * rows) + 1;
+            var endRecord = page * rows;
+            return PartialView("_List",_unit.Customers.PagedList(startRecord, endRecord));
+        }
+
+        [HttpGet]  
+        [Route("Count/{rows:int}")]
+        public int Count(int rows)
+        {
+            var totalRecords = _unit.Customers.Count();
+            return totalRecords % rows != 0 ? (totalRecords / rows) + 1 : totalRecords / rows;
         }
     }
 }
