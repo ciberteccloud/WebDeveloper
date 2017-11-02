@@ -7,7 +7,8 @@
                                                             InsertionMode = InsertionMode.Replace,
                                                             UpdateTargetId = "modal-body",
                                                             OnSuccess = "customer.success();"
-                                                        }, htmlAttributes: new { id = "createForm" }))
+                                                        }, 
+                                                        htmlAttributes: new { id = "createForm" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">

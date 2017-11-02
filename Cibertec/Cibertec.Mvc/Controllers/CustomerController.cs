@@ -34,7 +34,7 @@ namespace Cibertec.Mvc.Controllers
         {
             if (!ModelState.IsValid) return PartialView("_Create", customer);
             _unit.Customers.Insert(customer);
-            return Json(new { success = true });
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
@@ -45,12 +45,9 @@ namespace Cibertec.Mvc.Controllers
         [HttpPost]
         public ActionResult Edit(Customer customer)
         {
-            if (ModelState.IsValid)
-            {
-                _unit.Customers.Update(customer);
-                RedirectToAction("Index");
-            }
-            return PartialView("_Edit", customer);
+            if (!ModelState.IsValid) return PartialView("_Edit", customer);
+            _unit.Customers.Update(customer);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
