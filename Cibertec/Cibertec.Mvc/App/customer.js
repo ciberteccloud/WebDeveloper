@@ -3,8 +3,8 @@
 
     return customer;
 
-    function successReload() {
-        cibertec.closeModal();
+    function successReload(option) {
+        cibertec.closeModal(option);
     }
 
 })(window.customer = window.customer || {});
