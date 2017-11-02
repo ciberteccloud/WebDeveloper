@@ -3,6 +3,7 @@ using Cibertec.UnitOfWork;
 using System.Web.Mvc;
 using log4net;
 using Cibertec.Mvc.ActionFilters;
+using System.Net;
 
 namespace Cibertec.Mvc.Controllers
 {
@@ -25,23 +26,20 @@ namespace Cibertec.Mvc.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return PartialView("_Create", new Customer());
         }
 
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
-            if (ModelState.IsValid)
-            {
-                _unit.Customers.Insert(customer);
-                RedirectToAction("Index");
-            }
-            return View(customer);
+            if (!ModelState.IsValid) return PartialView("_Create", new Customer());            
+            _unit.Customers.Insert(customer);
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         public ActionResult Edit(int id)
         {
-            return View(_unit.Customers.GetById(id));
+            return PartialView("_Edit",_unit.Customers.GetById(id));
         }
 
         [HttpPost]
@@ -52,7 +50,7 @@ namespace Cibertec.Mvc.Controllers
                 _unit.Customers.Update(customer);
                 RedirectToAction("Index");
             }
-            return View(customer);
+            return PartialView("_Edit", customer);
         }
 
         public ActionResult Delete(int id)
