@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace Cibertec.Mvc.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         protected readonly IUnitOfWork _unit;
