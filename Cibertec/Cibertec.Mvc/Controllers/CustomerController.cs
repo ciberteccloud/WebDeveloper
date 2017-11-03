@@ -3,7 +3,6 @@ using Cibertec.UnitOfWork;
 using System.Web.Mvc;
 using log4net;
 using Cibertec.Mvc.ActionFilters;
-using System.Net;
 
 namespace Cibertec.Mvc.Controllers
 {
