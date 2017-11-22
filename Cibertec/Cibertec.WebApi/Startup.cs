@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
 
@@ -13,7 +11,7 @@ namespace Cibertec.WebApi
         public void Configuration(IAppBuilder app)
         {            
             var config = new HttpConfiguration();
-            Register(config);
+            RouteConfig.Register(config);
             app.UseWebApi(config);
         }
     }

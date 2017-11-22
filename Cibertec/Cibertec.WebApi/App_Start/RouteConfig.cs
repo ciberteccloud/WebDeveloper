@@ -2,7 +2,7 @@
 
 namespace Cibertec.WebApi
 {
-    public partial class Startup
+    public static class RouteConfig
     {
         public static void Register(HttpConfiguration config)
         {
