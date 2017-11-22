@@ -13,7 +13,8 @@ namespace Cibertec.WebApi
         public void Configuration(IAppBuilder app)
         {            
             var config = new HttpConfiguration();
-            Register(config);
+            DIConfig.ConfigureInjector(config);
+            RouteConfig.Register(config);
             app.UseWebApi(config);
         }
     }
