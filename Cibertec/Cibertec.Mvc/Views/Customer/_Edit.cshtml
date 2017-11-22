@@ -1,12 +1,14 @@
 ﻿@model Cibertec.Models.Customer
 <h2>Edit</h2>
+@Messages.Message("inUse", "Edit", "danger", "This Customer is in use at this moment.")
+
 @using (Ajax.BeginForm("Edit", new { Controller = "Customer" },
                                 new AjaxOptions
                                 {
                                     HttpMethod = "POST",
                                     InsertionMode = InsertionMode.Replace,
                                     UpdateTargetId = "modal-body",
-                                    OnSuccess = "customer.success('edit');"
+                                    OnSuccess = "customer.success('edit');customer.removeCustomer(@Model.Id);"
                                 }, htmlAttributes: new { id = "editForm" }))
 {
     @Html.AntiForgeryToken()
@@ -66,5 +68,13 @@
 <script type="text/javascript">
     $(function () {
         $.validator.unobtrusive.parse("#editForm");
+        $('#inUse').addClass('hidden');
+        customer.addCustomer(@Model.Id);
+        customer.validate(@Model.Id);
     });
+
+    customer.closeModal = function () {
+        customer.removeCustomer(@Model.Id);        
+    };
+
 </script>

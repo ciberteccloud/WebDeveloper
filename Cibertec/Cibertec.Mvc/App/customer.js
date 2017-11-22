@@ -1,16 +1,24 @@
-﻿(function (customer) {
-    customer.success = successReload;
+﻿(function (customer) {    
     customer.pages = 1;
     customer.rowSize = 25;
+    customer.hub = {};
+    customer.ids = [];
 
-    init();
-    
+    customer.success = successReload;
+    customer.addCustomer = addCustomerId;
+    customer.removeCustomer = removeCustomerId;
+    customer.validate = validate;
+
+    $(function () {
+        connectToHub();        
+        init();        
+    });
 
     return customer;
 
     function successReload(option) {
         cibertec.closeModal(option);
-    }
+    }   
 
     function init() {
         $.get('/Customer/Count/' + customer.rowSize,
@@ -44,5 +52,28 @@
             $('.content').html(data);
         });
     }
+
+    function addCustomerId(id) {        
+        customer.hub.server.addCustomerId(id); 
+    }
+
+    function removeCustomerId(id) {                
+        customer.hub.server.removeCustomerId(id);  
+    }
     
+    function connectToHub() {
+        customer.hub = $.connection.customerHub;                
+        customer.hub.client.customerStatus = customerStatus;
+    }
+
+    function customerStatus(customerIds) {
+        customer.ids= customerIds;
+    }
+
+    function validate(id) {
+        if (customer.ids.indexOf(id) > -1)
+            $('#inUse').removeClass('hidden');
+    }
+        
+
 })(window.customer = window.customer || {});
