@@ -4,35 +4,34 @@ using System.Web.Http;
 
 namespace Cibertec.WebApi.Controllers
 {
-    [RoutePrefix("customer")]
-    public class CustomerController : BaseController
+    [RoutePrefix("order")]
+    public class OrderController : BaseController
     {
-        public CustomerController(IUnitOfWork unit) : base(unit)
+        public OrderController(IUnitOfWork unit) : base(unit)
         {
         }
-
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
             if (id <= 0) return BadRequest();
-            return Ok(_unit.Customers.GetById(id));
+            return Ok(_unit.Orders.GetById(id));
         }
 
         [Route("")]
         [HttpPost]
-        public IHttpActionResult Post(Customer customer)
+        public IHttpActionResult Post(Order order)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            var id = _unit.Customers.Insert(customer);
+            var id = _unit.Orders.Insert(order);
             return Ok(new { id = id });
         }
 
         [Route("")]
         [HttpPut]
-        public IHttpActionResult Put(Customer customer)
+        public IHttpActionResult Put(Order order)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            if (!_unit.Customers.Update(customer)) return BadRequest("Incorrect id");
+            if (!_unit.Orders.Update(order)) return BadRequest("Incorrect id");
             return Ok(new { status = true });
         }
 
@@ -41,7 +40,7 @@ namespace Cibertec.WebApi.Controllers
         public IHttpActionResult Delete(int id)
         {
             if (id <= 0) return BadRequest();
-            var result = _unit.Customers.Delete(new Customer { Id = id });
+            var result = _unit.Orders.Delete(new Order { Id = id });
             return Ok(new { delete = true });
         }
 
@@ -49,7 +48,7 @@ namespace Cibertec.WebApi.Controllers
         [Route("list")]
         public IHttpActionResult GetList()
         {
-            return Ok(_unit.Customers.GetList());
+            return Ok(_unit.Orders.GetList());
         }
     }
 }
