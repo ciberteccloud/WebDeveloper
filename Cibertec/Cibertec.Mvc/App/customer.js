@@ -3,6 +3,7 @@
     customer.rowSize = 25;
     customer.hub = {};
     customer.ids = [];
+    customer.recordInUse = false;
 
     customer.success = successReload;
     customer.addCustomer = addCustomerId;
@@ -67,13 +68,15 @@
     }
 
     function customerStatus(customerIds) {
+        console.log(customerIds);
         customer.ids= customerIds;
     }
 
     function validate(id) {
-        if (customer.ids.indexOf(id) > -1)
-            $('#inUse').removeClass('hidden');
+        customer.recordInUse = (customer.ids.indexOf(id) > -1);
+        if (customer.recordInUse) {
+            $('#inUse').removeClass('hidden');            
+        }        
     }
-        
 
 })(window.customer = window.customer || {});

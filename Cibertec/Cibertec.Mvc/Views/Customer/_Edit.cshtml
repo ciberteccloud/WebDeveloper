@@ -74,7 +74,8 @@
     });
 
     customer.closeModal = function () {
-        customer.removeCustomer(@Model.Id);        
+        if(!customer.recordInUse)
+            customer.removeCustomer(@Model.Id);
     };
 
 </script>
