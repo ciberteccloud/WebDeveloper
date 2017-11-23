@@ -21,7 +21,8 @@ namespace Cibertec.WebApi
 
             DIConfig.ConfigureInjector(config);
             TokenConfig.ConfigureOAuth(app, config);
-            RouteConfig.Register(config);            
+            RouteConfig.Register(config);
+            WebApiConfig.Configure(config);            
             app.UseWebApi(config);
         }
     }
