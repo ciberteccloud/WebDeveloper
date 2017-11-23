@@ -13,7 +13,7 @@ namespace Cibertec.WebApi
         public static void ConfigureInjector(HttpConfiguration config)
         {
             var container = new Container();
-            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();            
             container.Register<IUnitOfWork>(() => new NorthwindUnitOfWork(ConfigurationManager.ConnectionStrings["NorthwindConnection"].ToString()));
             
             container.Verify();

@@ -3,6 +3,7 @@ using Cibertec.UnitOfWork;
 
 namespace Cibertec.WebApi.Controllers
 {    
+    [Authorize]
     public class BaseController : ApiController
     {
         protected readonly IUnitOfWork _unit;
