@@ -1,19 +1,22 @@
 ﻿using Cibertec.Models;
 using Cibertec.UnitOfWork;
 using System.Web.Http;
+using log4net;
 
 namespace Cibertec.WebApi.Controllers
 {
     [RoutePrefix("customer")]
     public class CustomerController : BaseController
     {
-        public CustomerController(IUnitOfWork unit) : base(unit)
+        public CustomerController(IUnitOfWork unit, ILog log) : base(unit, log)
         {
+            _log.Info($"{typeof(CustomerController)} in Execution");
         }
 
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
+            _log.Debug($"Customer Id: {id}");
             if (id <= 0) return BadRequest();
             return Ok(_unit.Customers.GetById(id));
         }
@@ -50,6 +53,13 @@ namespace Cibertec.WebApi.Controllers
         public IHttpActionResult GetList()
         {
             return Ok(_unit.Customers.GetList());
+        }
+
+        [HttpGet]
+        [Route("error")]
+        public IHttpActionResult CreateError()
+        {
+            throw new System.Exception("This is an unhandled error.");
         }
     }
 }

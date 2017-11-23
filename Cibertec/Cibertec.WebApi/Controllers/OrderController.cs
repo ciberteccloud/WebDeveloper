@@ -1,15 +1,17 @@
 ﻿using Cibertec.Models;
 using Cibertec.UnitOfWork;
 using System.Web.Http;
+using log4net;
 
 namespace Cibertec.WebApi.Controllers
 {
     [RoutePrefix("order")]
     public class OrderController : BaseController
     {
-        public OrderController(IUnitOfWork unit) : base(unit)
+        public OrderController(IUnitOfWork unit, ILog log) : base(unit, log)
         {
         }
+
         [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
