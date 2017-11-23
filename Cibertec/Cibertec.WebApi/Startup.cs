@@ -12,13 +12,16 @@ namespace Cibertec.WebApi
     {
         public void Configuration(IAppBuilder app)
         {            
-            var config = new HttpConfiguration();
-            //config.Services.Replace(typeof(IExceptionHandler), new ContentNegotiatedExceptionHandler());
-            app.UseOwinExceptionHandler();
+            log4net.Config.XmlConfigurator.Configure();
+            var log = log4net.LogManager.GetLogger(typeof(Startup));
+            log.Debug("Logging is enabled");
+
+            var config = new HttpConfiguration();            
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
 
             DIConfig.ConfigureInjector(config);
             TokenConfig.ConfigureOAuth(app, config);
-            RouteConfig.Register(config);
+            RouteConfig.Register(config);            
             app.UseWebApi(config);
         }
     }
