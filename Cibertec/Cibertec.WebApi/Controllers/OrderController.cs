@@ -10,6 +10,7 @@ namespace Cibertec.WebApi.Controllers
     {
         public OrderController(IUnitOfWork unit, ILog log) : base(unit, log)
         {
+            _log.Info($"{typeof(OrderController)} in Execution");
         }
 
         [Route("{id}")]

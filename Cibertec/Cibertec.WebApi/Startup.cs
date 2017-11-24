@@ -1,4 +1,4 @@
-﻿using Cibertec.WebApi.Middlewares;
+﻿using Cibertec.WebApi.Handlers;
 using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
