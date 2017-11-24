@@ -56,6 +56,7 @@ namespace Cibertec.WebApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("error")]
         public IHttpActionResult CreateError()
         {
