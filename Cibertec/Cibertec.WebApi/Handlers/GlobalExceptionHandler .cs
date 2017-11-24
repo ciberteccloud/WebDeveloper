@@ -2,7 +2,7 @@
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Results;
 
-namespace Cibertec.WebApi.Middlewares
+namespace Cibertec.WebApi.Handlers
 {    
     public class GlobalExceptionHandler : ExceptionHandler
     {
