@@ -1,0 +1,1 @@
+export const GOT_TOKEN = 'GOT_TOKEN'

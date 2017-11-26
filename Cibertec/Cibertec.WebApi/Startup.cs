@@ -1,5 +1,6 @@
 ﻿using Cibertec.WebApi.Middlewares;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Owin;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
@@ -20,6 +21,7 @@ namespace Cibertec.WebApi
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
 
             DIConfig.ConfigureInjector(config);
+            app.UseCors(CorsOptions.AllowAll);
             TokenConfig.ConfigureOAuth(app, config);
             RouteConfig.Register(config);
             WebApiConfig.Configure(config);            
