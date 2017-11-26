@@ -21,3 +21,32 @@ export function loginUser(email: string, password: string) {
             .catch((error) => { console.log(error) });
     }
 }
+
+
+export function getCustomerList(token: string, page: number, pageSize: number) {
+    return function (dispatch: any) {
+        let config = { headers: { Authorization: `Bearer ${token}` }};        
+        axios.get(`${apiUrl}/customer/list/${page}/${pageSize}`, config)
+            .then(response => {
+                dispatch({
+                    type: types.GOT_CUSTOMERS,
+                    customers: response.data
+                });
+            })
+            .catch((error) => { console.log(error) });
+    }
+}
+
+export function getCustomerCount(token: string) {
+    return function (dispatch: any) {
+        let config = { headers: { Authorization: `Bearer ${token}` }};                
+        axios.get(`${apiUrl}/customer/count`, config)
+            .then(response => {                
+                dispatch({
+                    type: types.GOT_CUSTOMERS_COUNT,
+                    customerCount: response.data
+                });
+            })
+            .catch((error) => { console.log(error) });
+    }
+}

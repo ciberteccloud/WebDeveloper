@@ -19,7 +19,7 @@ interface ILoginProps extends React.Props<any>{
 function mapStateToProps(state: any, ownProps: any) { 
     return {
         token: state.loginReducer.token,
-        customers: state.loginReducer.customers
+        customers: state.customerReducer.customers
     };
 }
 
@@ -40,6 +40,11 @@ class Login extends React.Component<any, ILoginState> {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleLoginUser = this.handleLoginUser.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps: any) {
+        if (nextProps.token !== '')
+            hashHistory.push('/customers');
     }
 
     render() {
@@ -72,7 +77,6 @@ class Login extends React.Component<any, ILoginState> {
                                     </div>
                                     <button className="btn btn-primary btn-block" onClick={this.handleLoginUser}>Entrar</button>
                                 </form>
-                                <p className="login-token-preview">{this.props.token}</p>
                             </div>
                         </div>
                     </div>        

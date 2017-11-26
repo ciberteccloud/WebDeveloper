@@ -49,10 +49,19 @@ namespace Cibertec.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("list")]
-        public IHttpActionResult GetList()
+        [Route("count")]
+        public IHttpActionResult GetCount()
         {
-            return Ok(_unit.Customers.GetList());
+            return Ok(_unit.Customers.Count());
+        }
+
+        [HttpGet]
+        [Route("list/{page}/{rows}")]
+        public IHttpActionResult GetList(int page, int rows)
+        {
+            var startRecord = ((page - 1) * rows) + 1;
+            var endRecord = page * rows;
+            return Ok(_unit.Customers.PagedList(startRecord, endRecord));
         }
 
         [HttpGet]

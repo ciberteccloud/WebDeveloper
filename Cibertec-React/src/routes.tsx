@@ -8,6 +8,7 @@ import DefaultParams from './defaultParams';
 
 import Login from "./components/Login";
 import NotFound from "./components/404";
+import CustomerList from "./components/CustomerList";
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers, DefaultParams());
@@ -18,6 +19,7 @@ export class CustomersApp extends React.Component<any, any> {
             <Provider store={store}>
                 <Router history={hashHistory}>
                     <Route path="/" component={Login}/>
+                    <Route path="/customers" component={CustomerList}/>
                     <Route path="*" component={NotFound} />
                 </Router>   
             </Provider>
