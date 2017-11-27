@@ -1,8 +1,5 @@
 ﻿using Cibertec.Repositories.Northwind;
 using Cibertec.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cibertec.Repositories.Dapper.Northwind
 {
