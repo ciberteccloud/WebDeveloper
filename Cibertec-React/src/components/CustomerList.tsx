@@ -102,6 +102,10 @@ class CustomerList extends React.Component<any, ICustomerListState> {
                                         <button type="button" className="btn btn-success" onClick={this.handlePageNext}>Siguiente &raquo;</button>
                                     </div>
                                 </div>
+
+                                <div className="text-right">
+                                    <Link to="/customercreate" className="btn btn-primary">Agregar Cliente</Link>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -128,8 +132,7 @@ class CustomerList extends React.Component<any, ICustomerListState> {
         let { token, customerCount } = this.props
         let { page, pageSize } = this.state
 
-        let maxPage = (customerCount % pageSize > 0 ? (customerCount / pageSize) + 1 : (customerCount / pageSize));
-        console.log(maxPage);
+        let maxPage = (customerCount % pageSize > 0 ? (customerCount / pageSize) + 1 : (customerCount / pageSize));        
         let newPage = page + 1;
         if (newPage <= maxPage) {
             this.setState({ page: newPage }, () => {
