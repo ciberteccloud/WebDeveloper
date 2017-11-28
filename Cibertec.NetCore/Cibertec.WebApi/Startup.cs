@@ -41,6 +41,7 @@ namespace Cibertec.WebApi
                     .RequireAuthenticatedUser()
                     .Build();
             });
+            services.AddCors();
 
             services.AddMvc();
         }
@@ -53,6 +54,12 @@ namespace Cibertec.WebApi
                 app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();
+            app.UseCors(builder =>
+                builder
+                .AllowAnyHeader()
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+            );
             app.UseMvc();
         }
     }

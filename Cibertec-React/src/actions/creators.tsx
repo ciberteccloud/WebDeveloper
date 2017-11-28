@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Dispatch } from "redux";
 import * as URLSearchParams from 'url-search-params'
 
-let apiUrl = 'http://localhost/Cibertec.WebApi';
+let apiUrl = 'http://localhost/Cibertec/api';
 
 export function loginUser(email: string, password: string) {
     return function (dispatch: any) {
