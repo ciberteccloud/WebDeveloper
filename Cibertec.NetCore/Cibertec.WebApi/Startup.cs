@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Cibertec.Repositories.Dapper.Northwind;
+using Cibertec.UnitOfWork;
 
 namespace Cibertec.WebApi
 {
@@ -23,6 +25,7 @@ namespace Cibertec.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IUnitOfWork>(option => new NorthwindUnitOfWork(Configuration.GetConnectionString("Northwind")));
             services.AddMvc();
         }
 
