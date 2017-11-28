@@ -58,7 +58,7 @@ namespace Cibertec.WebApi
                 builder
                 .AllowAnyHeader()
                 .AllowAnyOrigin()
-                .AllowAnyMethod()
+                .AllowAnyMethod()                
             );
             app.UseMvc();
         }
